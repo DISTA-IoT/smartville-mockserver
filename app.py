@@ -20,39 +20,16 @@ import logging
 from fastapi import FastAPI
 import uvicorn
 import os
-from scapy.all import *
-import netifaces as ni
-from threading import Lock
 import time
-import subprocess
+import netifaces as ni
 
 
 
-# Global variables for process management
-SOURCE_IP = None
-SOURCE_MAC = None
-TARGET_IP = None
 IFACE_NAME = 'eth0'
-PATTERN_TO_REPLAY = None
-PREPROCESSED = None
-SPEED_MULTIPLIER = None
-HEALTH_MONITORING = None
-KAFKA_ENDPOINT = None
-HEALTH_PROBE_FREQUENCY = None
 
 
-health_monitor = None
-kafka_msg_producer = None
-healt_probes_count = 0
-stop_flag = True
-stop_flag_lock = Lock()
-current_replay_process: Optional[subprocess.Popen] = None
-replay_thread = None
-checker_thread = None
-health_thread = None
-rewriting = False
 
-logger = logging.getLogger("honeypot_server")
+logger = logging.getLogger("mockserver")
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -64,7 +41,7 @@ logging.basicConfig(
 )
 
 
-app = FastAPI(title="Mockserver Server API", description="API for simulating honeypots")
+app = FastAPI(title="Mockserver Server API", description="API for simulating a central server")
 
 def get_static_source_ip_address(interface=IFACE_NAME):
     try:
