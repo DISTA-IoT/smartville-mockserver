@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 ARG CACHE_BUST=1
 # Clone the repo
-RUN git clone -b new_smartville https://github.com/DISTA-IoT/smartville-mockserver.git /mockserver
+RUN git clone -b main https://github.com/DISTA-IoT/smartville-mockserver.git /mockserver
 
 WORKDIR /mockserver
 
