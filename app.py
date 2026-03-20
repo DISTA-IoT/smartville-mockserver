@@ -77,7 +77,7 @@ if __name__ == "__main__":
         logger.error(f"Error obtaining SOURCE_IP env var: {e}")
         assert False
 
-    uvicorn.run(app, host="SOURCE_IP", port=port)
+    uvicorn.run(app, host=SOURCE_IP, port=port)
     
 
 
