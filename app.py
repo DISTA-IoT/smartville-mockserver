@@ -66,13 +66,15 @@ if __name__ == "__main__":
     
     try:
         port = int(os.environ.get("SERVER_PORT"))
+        logger.info(f"SERVER_PORT: {port}")
     except Exception as e:
-        print(f"Error parsing SERVER_PORT env var: {e}")
+        logger.error(f"Error parsing SERVER_PORT env var: {e}")
         assert False
     try:
         SOURCE_IP = get_static_source_ip_address()
+        logger.info(f"SOURCE_IP: {SOURCE_IP}")
     except Exception as e:
-        print(f"Error obtaining SOURCE_IP env var: {e}")
+        logger.error(f"Error obtaining SOURCE_IP env var: {e}")
         assert False
 
     uvicorn.run(app, host="SOURCE_IP", port=port)
