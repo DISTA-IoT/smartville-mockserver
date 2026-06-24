@@ -19,7 +19,9 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 # Code-only bust: pass CODE_BUST=<timestamp> to re-run only the git clone, keeping pip cached
 ARG CODE_BUST=1
 
+ARG CODE_BRANCH=TIGER_PAPER_DO_NOT_DELETE
+
 # Clone the repo
-RUN git clone -b main https://github.com/DISTA-IoT/smartville-mockserver.git /mockserver
+RUN git clone --branch ${CODE_BRANCH} https://github.com/DISTA-IoT/smartville-mockserver.git /mockserver
 
 WORKDIR /mockserver
